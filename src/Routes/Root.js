@@ -8,10 +8,10 @@ export const Root = () => {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/home" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Home />} />
+          {/* <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<Cadastro />} />
-          <Route path="/carrinho" element={<Carrinho />} />
+          <Route path="/carrinho" element={<Carrinho />} /> */}
         </Routes>
       </BrowserRouter>
     </>
