@@ -70,4 +70,5 @@ export const BotaoPesquisa = styled.button`
   font-weight:bold;
   color: #08034A;
   background: rgba(113, 176, 250, 0.63);
+  cursor: pointer;
 `
