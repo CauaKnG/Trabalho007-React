@@ -6,11 +6,11 @@ BarraPesquisa, InputPesquisa, BotaoPesquisa } from "./Style";
 export const NavBar = () => {
 
   var navigate = useNavigate();
-  function handleClickHome() {
+  function handleClickInicio() {
     navigate("/")
   }
-  function handleClickLogin() {
-    navigate("/login")
+  function handleClickEntrar() {
+    navigate("/entrar")
   }
   function handleClickCarrinho() {
     navigate("/carrinho")
@@ -19,16 +19,15 @@ export const NavBar = () => {
   return (
     <Cabecalho>
       <Header>
-        <Titulo onClick={handleClickHome}>7 Passos</Titulo>
+        <Titulo onClick={handleClickInicio}>7 Passos</Titulo>
         <BarraPesquisa>
           <InputPesquisa type="text" placeholder="Digite..." />
           <BotaoPesquisa>Pesquisar</BotaoPesquisa>
         </BarraPesquisa>
         <Lista>
-          <Individual onClick={handleClickLogin}>Login</Individual>
+          <Individual onClick={handleClickEntrar}>Entrar</Individual>
           <Individual onClick={handleClickCarrinho}>Carrinho</Individual>
         </Lista>
-
       </Header>
     </Cabecalho>
   )
