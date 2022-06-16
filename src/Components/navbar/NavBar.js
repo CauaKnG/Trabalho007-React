@@ -1,23 +1,35 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { Titulo, Header, Lista, Cabecalho, Individual,
+BarraPesquisa, InputPesquisa, BotaoPesquisa } from "./Style";
 
-export const NavBar = () =>{
-    return(<>
-    <header>
-      <a class="logo" href="index.html">
-        <img src="./assets/imagens/logo.png" alt="" />
-      </a>
-      <nav>
-        <div class="container-btn-menu d-lg-none">
-          <div class="btn-menu">
-            <div class="btn-left"></div>
-            <div class="btn-right"></div>
-          </div>
-        </div>
-        <ul class="navegacao">
-          <li><Link to= "" >Login </Link></li>
-          <li><Link to= "" >Carrinho </Link></li>
-        </ul>
-      </nav>
-    </header>
-        </>)
+export const NavBar = () => {
+
+  var navigate = useNavigate();
+  function handleClickHome() {
+    navigate("/")
+  }
+  function handleClickLogin() {
+    navigate("/login")
+  }
+  function handleClickCarrinho() {
+    navigate("/carrinho")
+  }
+
+  return (
+    <Cabecalho>
+      <Header>
+        <Titulo onClick={handleClickHome}>7 Passos</Titulo>
+        <BarraPesquisa>
+          <InputPesquisa type="text" placeholder="Digite..." />
+          <BotaoPesquisa>Pesquisar</BotaoPesquisa>
+        </BarraPesquisa>
+        <Lista>
+          <Individual onClick={handleClickLogin}>Login</Individual>
+          <Individual onClick={handleClickCarrinho}>Carrinho</Individual>
+        </Lista>
+
+      </Header>
+    </Cabecalho>
+  )
 }

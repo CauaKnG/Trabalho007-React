@@ -1,9 +1,10 @@
 import React from "react";
+import { NavBar } from "../Components/navbar/NavBar"
 
-export const Home = () =>{
-    return(<>
-        <h3>7 passos</h3>
-        
-        
-        </>)
+export const Home = () => {
+    return (
+        <>
+            <NavBar/>
+        </>
+    )
 }
