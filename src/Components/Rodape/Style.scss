@@ -1,14 +1,16 @@
-footer{
-    background-color: #1A0ECD;
-    margin-top: 20px;
-    padding: 12px;
-    position: relative;
-    bottom:0;
-    p{
-        font-weight: bold;
-        color:  white;
-        &:last-child{
-        margin: 0px;
-        }
-    }
+footer {
+  background-color: #0d6efd;
+  margin-top: 20px;
+  padding: 12px;
+  position: relative;
+  bottom: 0;
+
+  .container {
+    flex-direction: column;
+  }
+  p {
+    font-weight: bold;
+    color: white;
+    margin: 0px;
+  }
 }
