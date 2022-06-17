@@ -18,7 +18,7 @@ export const NavBar = () => {
   return (
     <>
       <Navbar bg="primary" variant="dark" expand="lg">
-        <Container class="container-nav">
+        <Container className="container-nav">
           <Navbar.Brand href="/">7 Passos</Navbar.Brand>
           <Form className="d-none col-lg-6 d-lg-flex">
             <Form.Group className="w-100" controlId="formBasicEmail">
