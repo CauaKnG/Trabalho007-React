@@ -1,9 +1,14 @@
 form{
-    .formulario-container{
-        width: 100%;
-        
-    }
     button{
         margin-left: 5px;
+    }
+}
+.container{
+    .navbar-collapse{
+        flex-grow: inherit;
+    }
+
+    .lupa{
+        margin-right: 10px;
     }
 }
