@@ -1,7 +1,14 @@
 footer{
     background-color: #1A0ECD;
+    margin-top: 20px;
+    padding: 12px;
+    position: relative;
+    bottom:0;
     p{
         font-weight: bold;
         color:  white;
+        &:last-child{
+        margin: 0px;
+        }
     }
 }

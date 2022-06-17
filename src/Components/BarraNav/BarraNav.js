@@ -28,13 +28,13 @@ export const NavBar = () => {
       <Form.Group className="formulario-container" controlId="formBasicEmail">
       <FloatingLabel
         controlId="floatingInput"
-        label="Email address"
+        label="Digite"
       >
         <Form.Control type="text" placeholder="Enter email" />
       </FloatingLabel>
       </Form.Group>
       <Button variant="primary" type="submit">
-        Submit
+        Pesquisar
       </Button>
     </Form>
         

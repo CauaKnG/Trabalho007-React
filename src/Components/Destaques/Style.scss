@@ -1,0 +1,33 @@
+.titulo-card{
+  margin-top: 45px;
+  font-size: 35px;
+  border-bottom: 2px solid black;
+  margin-bottom: 25px;
+}
+.cards{
+.card{
+  margin-bottom: 20px;
+}
+}
+@media screen and (min-width:992px){
+
+  .cards{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    gap: 20px;
+    .card{
+    width: 25% ;
+      margin-bottom: 0px;
+      img{
+        height: 200px;
+        width: 100%;
+      }
+    }
+  }
+  
+}
+
+
+
+
