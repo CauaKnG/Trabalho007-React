@@ -1,15 +1,17 @@
 import React from "react";
-import "./Style.scss"
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
+import "./Style.scss";
 
 export const Rodape = () => {
   return (
-    <>
-      <footer>
-        <div>
+    <footer>
+      <Navbar bg="primary" variant="dark">
+        <Container>
           <p>Residência em TIC Software 2022.1 - Turma:01</p>
           <p>Todos os direitos reservados &copy; | Grupo7</p>
-        </div>
-      </footer>
-    </>
+        </Container>
+      </Navbar>
+    </footer>
   );
 };
