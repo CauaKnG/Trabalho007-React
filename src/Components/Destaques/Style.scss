@@ -7,8 +7,34 @@
 .cards{
 .card{
   margin-bottom: 20px;
+  box-shadow: 0 0 0.7em rgb(10, 10, 10);
+  transition: transform 0.15s linear;
+  border-radius: 8px;
+  &:hover {
+    transform: scale(1.05);
+}
+img{
+  border-radius: 8px;
 }
 }
+}
+.botao-card{
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  border: 1px solid #0d6efd;
+  border-radius: 4px;
+  color:white;
+  background-color: rgb(0, 115, 255);
+  margin: 0 1rem 1rem;
+  margin-top: 5px;
+  &:hover{
+    background-color: white;
+    color:black ;
+  }
+}
+
+
 @media screen and (min-width:992px){
 
   .cards{

@@ -17,12 +17,10 @@ export const Destaques = () => {
             alt="Tenis casual"
           />
           <Card.Body>
-            <Card.Title>Sapatênis de pateta</Card.Title>
-            <Card.Text>
-              Tênis casual para os pés !
-            </Card.Text>
-            <Button variant="primary">Conferir</Button>
+            <Card.Title>Tênis Artesanal</Card.Title>
+            <Card.Text>Tênis casual modelo tradicional</Card.Text>
           </Card.Body>
+          <Link className="botao-card" to="/detalhe-produto/17">Conferir</Link>
         </Card>
         <Card>
           <Card.Img
@@ -31,29 +29,27 @@ export const Destaques = () => {
             alt="Sandalia preta"
           />
           <Card.Body>
-            <Card.Title>Sandalia para por nos pés</Card.Title>
+            <Card.Title>Sandália Vanna Tresoldi</Card.Title>
             <Card.Text>
-              Sandalia para os pés 
+              Sandália Transpassada Salto Médio
             </Card.Text>
-            <Button variant="primary">Conferir</Button>
           </Card.Body>
+          <Link className="botao-card" to="/detalhe-produto/20">Conferir</Link>
         </Card>
-
-        <Card >
+        <Card>
           <Card.Img
             variant="top"
             src="https://a-static.mlcdn.com.br/800x560/tenis-esportivo-masculino-olimp-caminhada-academia-original-olimpak/vili/ptoryl43/e95f52eedda699d1f8ece25dcdd89aaa.jpg"
             alt="Tenis esportivo preto"
           />
           <Card.Body>
-            <Card.Title>Tenis esportivo da Paulo Barbosa</Card.Title>
+            <Card.Title>Tênis Olimpak</Card.Title>
             <Card.Text>
-              Tenis esportivo para os pés ! 
+              Tênis Olimpak Esportivo 
             </Card.Text>
-            <Button variant="primary">Conferir</Button>
           </Card.Body>
+          <Link className="botao-card" to="/detalhe-produto/3">Conferir</Link>
         </Card>
-
         <Card>
           <Card.Img
             variant="top"
@@ -61,12 +57,10 @@ export const Destaques = () => {
             alt="Bota da Prada"
           />
           <Card.Body>
-            <Card.Title>Sai e da prisao e coloquei essa bota</Card.Title>
-            <Card.Text>
-              Bota de prisioneiro para os pés !
-            </Card.Text>
-            <Button variant="primary">Conferir</Button>
+            <Card.Title>Bota Prada</Card.Title>
+            <Card.Text>Bota Prada de Couro Marrom</Card.Text>
           </Card.Body>
+          <Link className="botao-card" to="/detalhe-produto/28">Conferir</Link>
         </Card>
       </div>
     </div>
