@@ -6,10 +6,10 @@ export const BarraCategoria = () => {
   
     return (
       <div className="categorias d-none d-lg-flex">
-      <Link to="/produtos/Esporte">Esporte</Link>
-      <Link to="/produtos/Casual">Casual</Link>
-      <Link to="/produtos/Sandália">Sandália</Link>
-      <Link to="/produtos/Bota">Bota</Link>
+      <Link to="/produtos/esporte">Esporte</Link>
+      <Link to="/produtos/casual">Casual</Link>
+      <Link to="/produtos/sandalia">Sandália</Link>
+      <Link to="/produtos/bota">Bota</Link>
       </div>
     )
   } 
