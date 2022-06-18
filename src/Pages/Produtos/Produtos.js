@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { api } from "../../Services/api";
-import { useLocation, Switch } from "react-router-dom";
+import { useLocation, Link} from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Spinner  from "react-bootstrap/Spinner";
@@ -14,7 +14,7 @@ export const Produtos = () => {
   categoria = categoria[0].toUpperCase() + categoria.substring(1);
   const [listaProdutos, setListaProdutos] = useState();
 
-  React.useEffect(() => {
+  useEffect(() => {
     let carregando = false
     const getProdutosByCategoria = async () => {
       const response = await api.get(
@@ -43,7 +43,7 @@ export const Produtos = () => {
                 <Card.Title>{produto.nomeProduto}</Card.Title>
                 <Card.Text>{produto.descricaoProduto}</Card.Text>
                 <Card.Text>R$ {produto.valorUnitario}</Card.Text>
-                <Button variant="primary">Comprar</Button>
+                <Link to ={`/detalhe-produto/${produto.idProduto}`}>Comprar</Link>
               </Card.Body>
             </Card>
           ))}
