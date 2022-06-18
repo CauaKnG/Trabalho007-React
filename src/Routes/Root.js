@@ -7,6 +7,7 @@ import { Cadastro } from "../Pages/Cadastro/Cadastro";
 import { NavBar } from "../Components/BarraNav/BarraNav";
 import { Rodape } from "../Components/Rodape/Rodape";
 import { Produtos } from "../Pages/Produtos/Produtos";
+import { DetalheProduto } from "../Pages/DetalheProduto/DetalheProduto";
 
 export const Root = () => {
   return (
@@ -19,6 +20,7 @@ export const Root = () => {
           <Route path="/cadastrar" element={<Cadastro />} />
           <Route path="/carrinho" element={<Carrinho />} />
           <Route path="/produtos/:categoria" element={<Produtos />} />
+          <Route path="/detalhe-produto/:idProduto" element={<DetalheProduto />} />
         </Routes>
         <Rodape />
       </BrowserRouter>
