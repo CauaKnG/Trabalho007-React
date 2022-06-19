@@ -7,7 +7,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Card from "react-bootstrap/Card";
 import { useLocation, Link } from "react-router-dom";
-
+import { useCarrinho } from "../../Contexts/CarrinhoContext";
 
 export const DetalheProduto = () => {
   const location = useLocation();
@@ -18,13 +18,17 @@ export const DetalheProduto = () => {
   const [produtosRelacionados, setProdutosRelacionados] = useState();
 
   let categoria;
+  const carrinho = useCarrinho();
+  const add = (produto) => ()=> {
+    carrinho.addCarrinho(produto);
+  };
 
   useEffect(() => {
     let carregando = false;
     const getProdutoById = async () => {
       const responseProdutos = await api.get(`/produto/dto/${idProduto}`);
       setProduto(responseProdutos.data);
-      var nomeCategoria = responseProdutos.data.categoriaDTO.nomeCategoria
+      var nomeCategoria = responseProdutos.data.categoriaDTO.nomeCategoria;
       const getProdutosRelacionados = async () => {
         categoria = nomeCategoria.normalize("NFD");
         categoria = categoria[0].toUpperCase() + categoria.substring(1);
@@ -60,6 +64,8 @@ export const DetalheProduto = () => {
 
   return (
     <Container>
+      <pre>{JSON.stringify(carrinho, null, 2)}</pre>
+      
       {produto !== undefined && (
         <>
           <div className="row">
@@ -99,33 +105,31 @@ export const DetalheProduto = () => {
                   <span>R$ {produto.valorUnitario / 3}</span> sem juros no
                   cartão
                 </label>
-                <button className="d-block">Comprar</button>
+                <button onClick={add(produto)} className="d-block">Comprar</button>
               </div>
             </div>
           </div>
           {produtosRelacionados !== undefined && (
-          <Carousel responsive={responsive}>
-            
-          {produtosRelacionados.map((produto, index) => (
-             <Card key={index}>
-             <Card.Img
-               variant="top"
-               src={produto.imagemProduto.toString()}
-               alt={produto.descricaoProduto}
-             />
-             <Card.Body>
-               <Card.Title>{produto.nomeProduto}</Card.Title>
-               <Card.Text>{produto.descricaoProduto}</Card.Text>
-               <Card.Text>R$ {produto.valorUnitario}</Card.Text>
-               <Link to={`/detalhe-produto/${produto.idProduto}`}>
-                 Comprar
-               </Link>
-             </Card.Body>
-           </Card>
-            
-          ))}
-            
-          </Carousel> )}
+            <Carousel responsive={responsive}>
+              {produtosRelacionados.map((produto, index) => (
+                <Card key={index}>
+                  <Card.Img
+                    variant="top"
+                    src={produto.imagemProduto.toString()}
+                    alt={produto.descricaoProduto}
+                  />
+                  <Card.Body>
+                    <Card.Title>{produto.nomeProduto}</Card.Title>
+                    <Card.Text>{produto.descricaoProduto}</Card.Text>
+                    <Card.Text>R$ {produto.valorUnitario}</Card.Text>
+                    <Link to={`/detalhe-produto/${produto.idProduto}`}>
+                      Comprar
+                    </Link>
+                  </Card.Body>
+                </Card>
+              ))}
+            </Carousel>
+          )}
         </>
       )}
     </Container>
