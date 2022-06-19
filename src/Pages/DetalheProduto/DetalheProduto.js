@@ -22,11 +22,11 @@ export const DetalheProduto = () => {
   useEffect(() => {
     let carregando = false;
     const getProdutoById = async () => {
-      const response = await api.get(`/produto/dto/${idProduto}`);
-      setProduto(response.data);
+      const responseProdutos = await api.get(`/produto/dto/${idProduto}`);
+      setProduto(responseProdutos.data);
+      var nomeCategoria = responseProdutos.data.categoriaDTO.nomeCategoria
       const getProdutosRelacionados = async () => {
-        categoria = produto.categoriaDTO.nomeCategoria;
-        categoria = categoria.normalize("NFD");
+        categoria = nomeCategoria.normalize("NFD");
         categoria = categoria[0].toUpperCase() + categoria.substring(1);
         const response = await api.get(
           `/categoria/produto/dto/nome/${categoria}`
@@ -103,6 +103,7 @@ export const DetalheProduto = () => {
               </div>
             </div>
           </div>
+          {produtosRelacionados !== undefined && (
           <Carousel responsive={responsive}>
             
           {produtosRelacionados.map((produto, index) => (
@@ -124,7 +125,7 @@ export const DetalheProduto = () => {
             
           ))}
             
-          </Carousel> 
+          </Carousel> )}
         </>
       )}
     </Container>
