@@ -8,6 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { apiCEP, api } from "../../Services/api";
 import * as yup from "yup";
 
+
 const validacao = yup
   .object({
     nome: yup.string().required("O campo Nome é obrigatorio!"),
@@ -17,7 +18,7 @@ const validacao = yup
     cpf: yup.string().required("O campo CPF é obrigatorio!"),
     celular: yup.string().required("O campo Celular é obrigatorio!"),
     emailCadastro: yup.string().required("O campo Email é obrigatorio!"),
-    cep: yup.string().required("O campo Cep é obrigatorio!"),
+    //cep: yup.string().required("O campo Cep é obrigatorio!"),
     numero: yup.string().required("O campo Número é obrigatorio!"),
     rua: yup.string().required("O campo Rua é obrigatorio!"),
     complemento: yup.string().required("O campo Complemento é obrigatorio!"),
@@ -44,26 +45,53 @@ export const Cadastro = () => {
   });
 
   // let { nome, setNome } = useState();
-
-  const onSubmit = (dados, evn) => {
+  aceite: true
+  bairro: "Alto da Serraaaa"
+  celular: "248878785481"
+  cidade: "Petrópoliiiis"
+  complemento: "RUF"
+  confirmeSenha: "1111"
+  cpf: "45698745632"
+  emailCadastro: "aidehauihaduadh@gmail.com"
+  nascimento: "11111111"
+  nome: "aaaaaaaaaaaaaaaaaaaa"
+  numero: "454"
+  rua: "Estrada Velha da Estrela"
+  senha: "1111"
+  uf: "SP"
+  const onSubmit = (data, evn) => {
     evn.preventDefault();
-    /*const pessoas = JSON.parse(window.localStorage.getItem("usuarios"));
-    let pessoaLogada;
-    pessoas.forEach((pessoa) => {
-      if (
-        pessoa.email === data.enderecoEmail &&
-        pessoa.senha === data.Senha
-      ) {
-        pessoaLogada = pessoa
-        return pessoaLogada
-      }
-    });
-    if(pessoaLogada === undefined){
-      redirect("/cadastrar")
-    }else{
-      redirect("/")
-    }*/
-    // console.log(data);
+    const criarCliente = async () => {
+      const dadosEnviados = await api.post(`/cliente/dto`, {
+        emailCliente: data.emailCadastro,
+        nomeCliente: data.nome,
+        cpfCliente: data.cpf,
+        telefoneCliente: data.celular,
+        dataNascimento: data.nascimento,
+        enderecoDTO: {
+          numero: data.numero,
+          complemento: data.complemento,
+          cep: cepInformado,
+          bairro: data.bairro,
+          cidade: data.cidade,
+          uf: data.uf,
+          rua: data.rua,
+        }
+      },{
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin' : '*',
+          'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+          }
+      }).then((resposta) => {
+
+        console.log(resposta)
+      },(error) => {
+        console.log(error)
+      })
+    };
+    criarCliente();
+    console.log(data);
   };
 
   const [cepInformado, setCepInformado] = useState();
@@ -77,6 +105,7 @@ export const Cadastro = () => {
   }
 
   function handleChangeInputCep(e) {
+    // var value = e.target.value
     e.currentTarget.maxLength = 8;
     // return value.replace(/\D/g, "").replace(/^(\d{5})(\d{3})+?$/, "$1-$2");
   }
@@ -157,7 +186,7 @@ export const Cadastro = () => {
           <Form.Group className="mb-3 col-lg-6" controlId="cepCliente">
             <Form.Label>CEP</Form.Label>
             <Form.Control
-              {...register("cep")}
+              //{...register("cep")}
               type="text"
               value={cepInformado}
               onChange={handleChangeInputCep}
