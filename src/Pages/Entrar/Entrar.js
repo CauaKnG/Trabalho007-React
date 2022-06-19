@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Formulario } from "./Style";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { api } from "../../Services/api";
 
 const validacao = yup
   .object({
@@ -19,23 +20,22 @@ const validacao = yup
   .required();
 
 export const Entrar = () => {
-  window.localStorage.setItem(
-    "usuarios",
-    JSON.stringify([
-      {
-        nome: "Rebeca",
-        email: "rebeca@teste.com",
-        senha: "123",
-        isAdmin: true,
-      },
-      {
-        nome: "Gabriel",
-        email: "gabriel@teste.com",
-        senha: "123",
-        isAdmin: false,
-      },
-    ])
-  );
+  const location = useLocation();
+
+
+  const [clientes, setClientes] = useState({});
+
+  useEffect(() => {
+    let carregando = false;
+    const getClientes = async () => {
+      const response = await api.get(`/cliente`);
+      setClientes(response.data);
+      console.log(response.data);
+    };
+    getClientes();
+  }, [location]);
+
+  
 
   var redirect = useNavigate();
 
@@ -49,20 +49,26 @@ export const Entrar = () => {
 
   const onSubmit = (data, evn) => {
     evn.preventDefault();
-    const pessoas = JSON.parse(window.localStorage.getItem("usuarios"));
     let pessoaLogada;
-    pessoas.forEach((pessoa) => {
+    clientes.forEach((pessoa) => {
       if (
-        pessoa.email === data.enderecoEmail &&
+        pessoa.emailCliente === data.enderecoEmail &&
         pessoa.senha === data.Senha
       ) {
+        window.localStorage.setItem(
+          "usuario",
+          JSON.stringify(pessoa)
+        );
         pessoaLogada = pessoa
         return pessoaLogada
       }
     });
     if(pessoaLogada === undefined){
+      alert("Usuário não encontardo.")
       redirect("/cadastrar")
     }else{
+      alert("Bem-vindo, "+ pessoaLogada.nomeCliente)
+
       redirect("/")
     }
   };
