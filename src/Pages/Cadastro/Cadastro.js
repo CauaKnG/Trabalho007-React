@@ -45,20 +45,7 @@ export const Cadastro = () => {
   });
 
   // let { nome, setNome } = useState();
-  aceite: true
-  bairro: "Alto da Serraaaa"
-  celular: "248878785481"
-  cidade: "Petrópoliiiis"
-  complemento: "RUF"
-  confirmeSenha: "1111"
-  cpf: "45698745632"
-  emailCadastro: "aidehauihaduadh@gmail.com"
-  nascimento: "11111111"
-  nome: "aaaaaaaaaaaaaaaaaaaa"
-  numero: "454"
-  rua: "Estrada Velha da Estrela"
-  senha: "1111"
-  uf: "SP"
+  
   const onSubmit = (data, evn) => {
     evn.preventDefault();
     const criarCliente = async () => {
@@ -80,8 +67,7 @@ export const Cadastro = () => {
       },{
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin' : '*',
-          'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+
           }
       }).then((resposta) => {
 
