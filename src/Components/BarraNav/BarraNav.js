@@ -7,14 +7,18 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { useCarrinho } from "../../Contexts/CarrinhoContext";
 
 export const NavBar = () => {
+  const carrinho = useCarrinho();
   const [lupaAberta, setLupaAberta] = useState(false);
 
   function toogleLupa() {
     setLupaAberta(!lupaAberta);
   }
 
+  //const itemsCount = Object.keys(carrinho.carrinho).lenght;
+  //console.log(itemsCount);
   return (
     <>
       <Navbar bg="primary" variant="dark" expand="lg">
@@ -30,12 +34,15 @@ export const NavBar = () => {
           </Form>
           <div className="d-lg-none lupa">
             <button onClick={toogleLupa}>Lupa</button>
+
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
           </div>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="/entrar">Entrar</Nav.Link>
+
               <Nav.Link href="/carrinho">Carrinho</Nav.Link>
+
               <NavDropdown
                 title="Categorias"
                 className="d-lg-none"
