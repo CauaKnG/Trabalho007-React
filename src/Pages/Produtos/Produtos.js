@@ -21,7 +21,7 @@ export const Produtos = () => {
         `/categoria/produto/dto/nome/${categoria}`
       );
       setListaProdutos(response.data.produtoList);
-      console.log(response.data.produtoList);
+      // console.log(response.data.produtoList);
     };
     getProdutosByCategoria();
   }, [location]);

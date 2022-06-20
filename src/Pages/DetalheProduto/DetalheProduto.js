@@ -36,7 +36,7 @@ export const DetalheProduto = () => {
           `/categoria/produto/dto/nome/${categoria}`
         );
         setProdutosRelacionados(response.data.produtoList);
-        console.log(response.data.produtoList);
+        // console.log(response.data.produtoList);
       };
       getProdutosRelacionados();
     };
@@ -64,8 +64,6 @@ export const DetalheProduto = () => {
 
   return (
     <Container>
-      <pre>{JSON.stringify(carrinho, null, 2)}</pre>
-      
       {produto !== undefined && (
         <>
           <div className="row">

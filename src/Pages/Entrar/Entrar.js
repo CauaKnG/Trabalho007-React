@@ -30,7 +30,7 @@ export const Entrar = () => {
     const getClientes = async () => {
       const response = await api.get(`/cliente`);
       setClientes(response.data);
-      console.log(response.data);
+      // console.log(response.data);
     };
     getClientes();
   }, [location]);
