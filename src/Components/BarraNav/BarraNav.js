@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./Style.scss";
@@ -6,19 +6,39 @@ import { BarraCategoria } from "../BarraCategoria/BarraCategoria";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { useLocation } from "react-router-dom";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useCarrinho } from "../../Contexts/CarrinhoContext";
 
 export const NavBar = () => {
   const carrinho = useCarrinho();
+  const location = useLocation();
   const [lupaAberta, setLupaAberta] = useState(false);
+  const [usuarioLogado, setUsuarioLogado] = useState(false);
 
   function toogleLupa() {
     setLupaAberta(!lupaAberta);
   }
 
-  //const itemsCount = Object.keys(carrinho.carrinho).lenght;
-  //console.log(itemsCount);
+  const contadorTotalCarrinho = Object.keys(carrinho.carrinho).reduce(
+    (prev, curr) => {
+      return prev + carrinho.carrinho[curr].quantidade;
+    },
+    0
+  );
+
+  useEffect(() => {
+    const usuario = window.localStorage.getItem("usuario");
+    if (usuario) {
+      setUsuarioLogado(true);
+    } else {
+      setUsuarioLogado(false);
+    }
+  }, [location]);
+
+  const deslogar = () => {
+    window.localStorage.removeItem("usuario");
+  };
   return (
     <>
       <Navbar bg="primary" variant="dark" expand="lg">
@@ -39,9 +59,20 @@ export const NavBar = () => {
           </div>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/entrar">Entrar</Nav.Link>
-
-              <Nav.Link href="/carrinho">Carrinho</Nav.Link>
+              {usuarioLogado === false && (
+                <Nav.Link href="/entrar">Entrar</Nav.Link>
+              )}
+              {usuarioLogado === true && (
+                <Nav.Link onClick={deslogar} href="/">
+                  Sair
+                </Nav.Link>
+              )}
+              <Nav.Link href="/carrinho">
+                Carrinho{" "}
+                {contadorTotalCarrinho > 0 && (
+                  <span>({contadorTotalCarrinho})</span>
+                )}
+              </Nav.Link>
 
               <NavDropdown
                 title="Categorias"

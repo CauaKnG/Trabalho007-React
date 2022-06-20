@@ -13,8 +13,8 @@ import { CarrinhoProvider } from "../Contexts/CarrinhoContext";
 export const Root = () => {
   return (
     <>
-      <BrowserRouter>
-        <CarrinhoProvider>
+      <CarrinhoProvider>
+        <BrowserRouter>
           <NavBar />
           <Routes>
             <Route path="/" element={<Inicio />} />
@@ -28,8 +28,8 @@ export const Root = () => {
             />
           </Routes>
           <Rodape />
-        </CarrinhoProvider>
-      </BrowserRouter>
+        </BrowserRouter>
+      </CarrinhoProvider>
     </>
   );
 };

@@ -84,9 +84,9 @@ export const Cadastro = () => {
       criarCliente();
   };
 
-  function handleChangeInputData(event) {
-    console.log(event.target.value);
-  }
+    function handleChangeInputData(event) {
+      // console.log(event.target.value);
+    }
 
   function handleChangeInputCep(e) {
     // var value = e.target.value
