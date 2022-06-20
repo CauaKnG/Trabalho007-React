@@ -20,7 +20,9 @@ export const Destaques = () => {
             <Card.Title>Tênis Artesanal</Card.Title>
             <Card.Text>Tênis casual modelo tradicional</Card.Text>
           </Card.Body>
-          <Link className="botao-card" to="/detalhe-produto/17">Conferir</Link>
+          <Link className="botao-card" to="/detalhe-produto/17">
+            Conferir
+          </Link>
         </Card>
         <Card>
           <Card.Img
@@ -30,11 +32,11 @@ export const Destaques = () => {
           />
           <Card.Body>
             <Card.Title>Sandália Vanna Tresoldi</Card.Title>
-            <Card.Text>
-              Sandália Transpassada Salto Médio
-            </Card.Text>
+            <Card.Text>Sandália Transpassada Salto Médio</Card.Text>
           </Card.Body>
-          <Link className="botao-card" to="/detalhe-produto/20">Conferir</Link>
+          <Link className="botao-card" to="/detalhe-produto/20">
+            Conferir
+          </Link>
         </Card>
         <Card>
           <Card.Img
@@ -44,11 +46,11 @@ export const Destaques = () => {
           />
           <Card.Body>
             <Card.Title>Tênis Olimpak</Card.Title>
-            <Card.Text>
-              Tênis Olimpak Esportivo 
-            </Card.Text>
+            <Card.Text>Tênis Olimpak Esportivo</Card.Text>
           </Card.Body>
-          <Link className="botao-card" to="/detalhe-produto/3">Conferir</Link>
+          <Link className="botao-card" to="/detalhe-produto/3">
+            Conferir
+          </Link>
         </Card>
         <Card>
           <Card.Img
@@ -60,7 +62,9 @@ export const Destaques = () => {
             <Card.Title>Bota Prada</Card.Title>
             <Card.Text>Bota Prada de Couro Marrom</Card.Text>
           </Card.Body>
-          <Link className="botao-card" to="/detalhe-produto/28">Conferir</Link>
+          <Link className="botao-card" to="/detalhe-produto/28">
+            Conferir
+          </Link>
         </Card>
       </div>
     </div>

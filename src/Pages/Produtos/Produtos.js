@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { api } from "../../Services/api";
 import { useLocation, Link } from "react-router-dom";
-import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Spinner from "react-bootstrap/Spinner";
 import "./Style.scss";
@@ -22,7 +21,7 @@ export const Produtos = () => {
         `/categoria/produto/dto/nome/${categoria}`
       );
       setListaProdutos(response.data.produtoList);
-      console.log(response.data.produtoList);
+      // console.log(response.data.produtoList);
     };
     getProdutosByCategoria();
   }, [location]);

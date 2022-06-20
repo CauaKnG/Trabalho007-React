@@ -1,11 +1,11 @@
 import React from "react";
 import { Root } from "./Routes/Root";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
-function App () {
-  return(
+function App() {
+  return (
     <>
-    <Root/>
+      <Root />
     </>
   );
 }

@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { apiCEP, api } from "../../Services/api";
+import { api } from "../../Services/api";
 import * as yup from "yup";
 
 const validacao = yup
@@ -25,9 +25,6 @@ const validacao = yup
     uf: yup.string().required("O campo UF é obrigatorio!"),
     senha: yup.string().required("O campo Senha é obrigatorio!"),
     bairro: yup.string().required("O campo Bairro é obrigatorio!"),
-    confirmeSenha: yup
-      .string()
-      .required("O campo Confirme Senha é obrigatorio!"),
     aceite: yup.boolean("").oneOf([true], "message"),
   })
   .required();
@@ -45,55 +42,56 @@ export const Cadastro = () => {
 
   // let { nome, setNome } = useState();
 
-  const onSubmit = (dados, evn) => {
+  const onSubmit = (data, evn) => {
     evn.preventDefault();
-    /*const pessoas = JSON.parse(window.localStorage.getItem("usuarios"));
-    let pessoaLogada;
-    pessoas.forEach((pessoa) => {
-      if (
-        pessoa.email === data.enderecoEmail &&
-        pessoa.senha === data.Senha
-      ) {
-        pessoaLogada = pessoa
-        return pessoaLogada
-      }
-    });
-    if(pessoaLogada === undefined){
-      redirect("/cadastrar")
-    }else{
-      redirect("/")
-    }*/
-    // console.log(data);
+      const criarCliente = async () => {
+        const dadosEnviados = await api
+          .post(
+            `/cliente/dto`,
+            {
+              emailCliente: data.emailCadastro,
+              nomeCliente: data.nome,
+              cpfCliente: data.cpf,
+              telefoneCliente: data.celular,
+              dataNascimento: data.nascimento,
+              senha: data.senha,
+              enderecoDTO: {
+                numero: data.numero,
+                complemento: data.complemento,
+                cep: data.cep,
+                bairro: data.bairro,
+                cidade: data.cidade,
+                uf: data.uf,
+                rua: data.rua,
+              },
+            },
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          )
+          .then(
+            (resposta) => {
+              alert("Cliente cadastrado com sucesso!!")
+              redirect("/entrar")
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
+      };
+      criarCliente();
   };
 
-  const [cepInformado, setCepInformado] = useState();
-  const [cidade, setCidade] = useState();
-  const [rua, setRua] = useState();
-  const [UF, setUF] = useState();
-  const [bairro, setBairro] = useState();
-
-  function handleChangeInputData(event) {
-    console.log(event.target.value);
-  }
+    function handleChangeInputData(event) {
+      // console.log(event.target.value);
+    }
 
   function handleChangeInputCep(e) {
+    // var value = e.target.value
     e.currentTarget.maxLength = 8;
     // return value.replace(/\D/g, "").replace(/^(\d{5})(\d{3})+?$/, "$1-$2");
-  }
-
-  function getDadosCep(e) {
-    const cep = e.target.value;
-    setCepInformado(cep)
-    const getDados = async () => {
-      const responseEndereco = await apiCEP.get(`/${cep}/json/`);
-      setCidade(responseEndereco.data.localidade);
-      setBairro(responseEndereco.data.bairro);
-      setRua(responseEndereco.data.logradouro);
-      setUF(responseEndereco.data.uf);
-      setBairro(responseEndereco.data.bairro);
-      console.log(responseEndereco.data);
-    };
-    getDados();
   }
 
   /*function handleChangeInputCPF(event) {
@@ -159,9 +157,6 @@ export const Cadastro = () => {
             <Form.Control
               {...register("cep")}
               type="text"
-              value={cepInformado}
-              onChange={handleChangeInputCep}
-              onBlur={getDadosCep}
               placeholder="00000000"
             />
             <p>{errors.cep?.message}</p>
@@ -180,8 +175,6 @@ export const Cadastro = () => {
             <Form.Control
               {...register("rua")}
               type="text"
-              value={rua}
-              onChange={(e) => setRua(e.target.value)}
               placeholder="Rua xxxx"
             />
             <p>{errors.rua?.message}</p>
@@ -195,13 +188,11 @@ export const Cadastro = () => {
             />
             <p>{errors.complemento?.message}</p>
           </Form.Group>
-          <Form.Group className="mb-3 col-lg-5" controlId="cidadeCliente">
+          <Form.Group className="mb-3 col-lg-5" controlId="bairroCliente">
             <Form.Label>Bairro</Form.Label>
             <Form.Control
               {...register("bairro")}
               type="text"
-              value={bairro}
-              onChange={(e) => setBairro(e.target.value)}
               placeholder="Magé"
             />
             <p>{errors.bairro?.message}</p>
@@ -211,8 +202,6 @@ export const Cadastro = () => {
             <Form.Control
               {...register("cidade")}
               type="text"
-              value={cidade}
-              onChange={(e) => setCidade(e.target.value)}
               placeholder="Magé"
             />
             <p>{errors.cidade?.message}</p>
@@ -221,8 +210,6 @@ export const Cadastro = () => {
             <Form.Label>UF</Form.Label>
             <Form.Control
               {...register("uf")}
-              value={UF}
-              onChange={(e) => setUF(e.target.value)}
               type="text"
               placeholder="RJ"
             />
@@ -236,15 +223,6 @@ export const Cadastro = () => {
               placeholder="Senha"
             />
             <p>{errors.senha?.message}</p>
-          </Form.Group>
-          <Form.Group className="mb-3 col-lg-6" controlId="confirmeCliente">
-            <Form.Label>Confirme sua senha</Form.Label>
-            <Form.Control
-              {...register("confirmeSenha")}
-              type="password"
-              placeholder="Senha"
-            />
-            <p>{errors.confirmeSenha?.message}</p>
           </Form.Group>
           <Form.Group className="mb-3" controlId="aceite">
             <Form.Check
