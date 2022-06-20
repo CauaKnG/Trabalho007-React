@@ -5,6 +5,8 @@ import { useLocation, Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Spinner from "react-bootstrap/Spinner";
 import "./Style.scss";
+import Container from "react-bootstrap/Container";
+import {FormatarNumero} from "../../Utils/FormatarNumero";
 
 export const Produtos = () => {
   const location = useLocation();
@@ -32,25 +34,27 @@ export const Produtos = () => {
         <span className="visually-hidden">Loading...</span>
       </Spinner> */}
       {listaProdutos !== undefined && (
-        <div>
+        <Container>
+        <div className="container-produto row">
           {listaProdutos.map((produto, index) => (
-            <Card key={index}>
-              <Card.Img
+            <Card className="col-lg-auto" key={index}>
+              <Card.Img className="imagem-card"
                 variant="top"
                 src={produto.imagemProduto.toString()}
                 alt={produto.descricaoProduto}
               />
               <Card.Body>
                 <Card.Title>{produto.nomeProduto}</Card.Title>
-                <Card.Text>{produto.descricaoProduto}</Card.Text>
-                <Card.Text>R$ {produto.valorUnitario}</Card.Text>
-                <Link to={`/detalhe-produto/${produto.idProduto}`}>
-                  Comprar
+                <Card.Text className="descricao">{produto.descricaoProduto}</Card.Text>
+                <Card.Text>{FormatarNumero(produto.valorUnitario)}</Card.Text>
+                <Link className="botao-card-produto" to={`/detalhe-produto/${produto.idProduto}`}>
+                  Detalhes
                 </Link>
               </Card.Body>
             </Card>
           ))}
         </div>
+        </Container>
       )}
     </>
   );
