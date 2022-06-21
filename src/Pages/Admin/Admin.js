@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import { Link, useNavigate } from "react-router-dom";
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+import Button from "react-bootstrap/Button";
 
 export const Admin = () => {
   const location = useLocation();
@@ -24,15 +23,19 @@ export const Admin = () => {
     <>
       {adminLogado === true && (
         <Container>
-          <DropdownButton
-            variant="outline-secondary"
-            title="Categoria"
-            id="input-group-dropdown-1"
-          >
-            <Dropdown.Item href="#"><Link to="/admin/categoria/atualizar">Atualizar</Link></Dropdown.Item>
-            <Dropdown.Item href="#"><Link to="/admin/categoria/criar">Criar</Link></Dropdown.Item>
-            <Dropdown.Item href="#"><Link to="/admin/categoria/deletar">Deletar</Link></Dropdown.Item>
-          </DropdownButton>
+          <div >
+          <Link to="/admin/usuario/atualizar">Atualizar</Link>
+          </div>
+          <div>
+            <Link to="/admin/categoria/atualizar">Atualizar</Link>
+            <Link to="/admin/categoria/criar">Criar</Link>
+            <Link to="/admin/categoria/deletar">Deletar</Link>
+          </div>
+          <div>
+            <Link to="/admin/produto/atualizar">Atualizar</Link>
+            <Link to="/admin/produto/criar">Criar</Link>
+            <Link to="/admin/produto/deletar">Deletar</Link>
+          </div>
         </Container>
       )}
     </>

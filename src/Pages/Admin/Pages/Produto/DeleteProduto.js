@@ -5,8 +5,8 @@ import { Formulario } from "../../../Entrar/Style";
 import Table from "react-bootstrap/Table";
 import { Modal, Button } from "react-bootstrap";
 
-export const DeleteCategoria = () => {
-  const [categorias, setCategorias] = useState([]);
+export const DeleteProduto = () => {
+  const [produtos, setProdutos] = useState([]);
   const location = useLocation();
 
   const [show, setShow] = useState(false);
@@ -18,24 +18,24 @@ export const DeleteCategoria = () => {
   var redirect = useNavigate();
 
   useEffect(() => {
-    const getCategorias = async () => {
-      const response = await api.get(`/categoria`);
-      setCategorias(response.data);
+    const getProdutos = async () => {
+      const response = await api.get(`/produto`);
+      setProdutos(response.data);
       console.log(response.data);
     };
-    getCategorias();
+    getProdutos();
   }, [location]);
 
   
 
-  const removerCategoria = (idCategoria, evento) => {
+  const removerProduto = (idProduto, evento) => {
     evento.preventDefault();
-    console.log(idCategoria);
+    
     const remover = async () => {
-      const response = await api.delete(`/categoria/${idCategoria}`).then(
+      const response = await api.delete(`/produto/${idProduto}`).then(
         (response) => {
           setShow(false);
-          redirect("/admin/categoria/deletar");
+          redirect("/admin/produto/deletar");
         },
         (error) => {
           console.log(error);
@@ -61,11 +61,11 @@ export const DeleteCategoria = () => {
             </tr>
           </thead>
           <tbody>
-            {categorias.map((categoria, index) => (
+            {produtos.map((produto, index) => (
               <tr key={index}>
-                <td>{categoria.idCategoria}</td>
-                <td>{categoria.nomeCategoria}</td>
-                <td>{categoria.descricaoCategoria}</td>
+                <td>{produto.idProduto}</td>
+                <td>{produto.nomeProduto}</td>
+                <td>{produto.descricaoProduto}</td>
                 <td>
                   <Button variant="primary" onClick={handleShow}>
                     Excluir 
@@ -73,10 +73,10 @@ export const DeleteCategoria = () => {
 
                   <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
-                      <Modal.Title>Deletar categoria</Modal.Title>
+                      <Modal.Title>Deletar produto</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                      Deseja realmente excluir a categoria {categoria.nomeCategoria} ?
+                      Deseja realmente excluir o produto {produto.nomeProduto} ?
                     </Modal.Body>
                     <Modal.Footer>
                       <Button
@@ -89,7 +89,7 @@ export const DeleteCategoria = () => {
                       <Button
                         id="remover"
                         onClick={(e) =>
-                          removerCategoria(categoria.idCategoria, e)
+                          removerProduto(produto.idProduto, e)
                         }
                         variant="primary"
                       >

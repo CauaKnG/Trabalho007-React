@@ -93,7 +93,7 @@ export const NavBar = () => {
                 </Nav.Link>
               )}
               {/* Checar tomorrow */}
-              {usuarioLogado === true && adminLogado === true && (
+              {usuarioLogado === true && (
                 <Nav.Link href="/admin">
                   Admin
                 </Nav.Link>
