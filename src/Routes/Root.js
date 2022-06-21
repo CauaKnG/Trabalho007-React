@@ -13,6 +13,10 @@ import { Admin } from "../Pages/Admin/Admin";
 import { AtualizarCategoria } from "../Pages/Admin/Pages/Categoria/AtualizarCategoria";
 import { CriarCategoria } from "../Pages/Admin/Pages/Categoria/CriarCategoria";
 import { DeleteCategoria } from "../Pages/Admin/Pages/Categoria/DeletarCategoria";
+import { CriarProduto } from "../Pages/Admin/Pages/Produto/CriarProduto";
+import { AtualizarProduto } from "../Pages/Admin/Pages/Produto/AtualizarProduto";
+import { DeleteProduto } from "../Pages/Admin/Pages/Produto/DeleteProduto";
+import { AtualizarUsuario } from "../Pages/Admin/Pages/Usuario/AtualizarUsuario";
 
 export const Root = () => {
   return (
@@ -31,11 +35,26 @@ export const Root = () => {
               element={<DetalheProduto />}
             />
             <Route path="/admin" element={<Admin />} />
-            <Route path="/admin/produto" element={<Admin />} />
-            <Route path="/admin/categoria/atualizar" element={<AtualizarCategoria />} />
+
+            <Route
+              path="/admin/categoria/atualizar"
+              element={<AtualizarCategoria />}
+            />
             <Route path="/admin/categoria/criar" element={<CriarCategoria />} />
-            <Route path="/admin/categoria/deletar" element={<DeleteCategoria />} />
+            <Route
+              path="/admin/categoria/deletar"
+              element={<DeleteCategoria />}
+            />
+            <Route
+              path="/admin/produto/atualizar"
+              element={<AtualizarProduto />}
+            />
+            <Route path="/admin/produto/criar" element={<CriarProduto />} />
+            <Route path="/admin/produto/deletar" element={<DeleteProduto />} />
+            <Route path="/admin/usuario/atualizar" element={<AtualizarUsuario />} />
           </Routes>
+
+
           <Rodape />
         </BrowserRouter>
       </CarrinhoProvider>
