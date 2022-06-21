@@ -6,37 +6,38 @@ import Table from "react-bootstrap/Table";
 import { Modal, Button } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 
-export const DeleteCategoria = () => {
-  const [categorias, setCategorias] = useState([]);
-  const [categoriaSelecionada, setCategoriaSelecionada] = useState();
+export const DeleteProduto = () => {
+  const [produtos, setProdutos] = useState([]);
+  const [produtoSelecionado, setProdutoSelecionado] = useState();
   const location = useLocation();
 
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
 
-  const handleShow = (categoria) => {
+  const handleShow = (produto) => {
     setShow(true);
-    setCategoriaSelecionada(categoria);
+    setProdutoSelecionado(produto);
   };
 
   var redirect = useNavigate();
 
   useEffect(() => {
-    const getCategorias = async () => {
-      const response = await api.get(`/categoria`);
-      setCategorias(response.data);
+    const getProdutos = async () => {
+      const response = await api.get(`/produto`);
+      setProdutos(response.data);
     };
-    getCategorias();
+    getProdutos();
   }, [location]);
 
-  const removerCategoria = (idCategoria, evento) => {
+  const removerProduto = (idProduto, evento) => {
     evento.preventDefault();
+
     const remover = async () => {
-      const response = await api.delete(`/categoria/${idCategoria}`).then(
+      const response = await api.delete(`/produto/${idProduto}`).then(
         (response) => {
           setShow(false);
-          redirect("/admin/categoria/deletar");
+          redirect("/admin/produto/deletar");
         },
         (error) => {
           console.log(error);
@@ -62,27 +63,23 @@ export const DeleteCategoria = () => {
             </tr>
           </thead>
           <tbody>
-            {categorias.map((categoria, index) => (
+            {produtos.map((produto, index) => (
               <tr key={index}>
-                <td>{categoria.idCategoria}</td>
-                <td>{categoria.nomeCategoria}</td>
-                <td>{categoria.descricaoCategoria}</td>
+                <td>{produto.idProduto}</td>
+                <td>{produto.nomeProduto}</td>
+                <td>{produto.descricaoProduto}</td>
                 <td>
-                  <Button
-                    variant="primary"
-                    onClick={() => handleShow(categoria)}
-                  >
+                  <Button variant="primary" onClick={() => handleShow(produto)}>
                     Excluir
                   </Button>
-
-                  {categoriaSelecionada !== undefined && (
+                  {produtoSelecionado !== undefined && (
                     <Modal centered show={show} onHide={handleClose}>
                       <Modal.Header closeButton>
-                        <Modal.Title>Deletar categoria</Modal.Title>
+                        <Modal.Title>Deletar produto</Modal.Title>
                       </Modal.Header>
                       <Modal.Body>
-                        Deseja realmente excluir a categoria{" "}
-                        {categoriaSelecionada.nomeCategoria} ?
+                        Deseja realmente excluir o produto{" "}
+                        {produtoSelecionado.descricaoProduto} ?
                       </Modal.Body>
                       <Modal.Footer>
                         <Button
@@ -95,10 +92,7 @@ export const DeleteCategoria = () => {
                         <Button
                           id="remover"
                           onClick={(e) =>
-                            removerCategoria(
-                              categoriaSelecionada.idCategoria,
-                              e
-                            )
+                            removerProduto(produtoSelecionado.idProduto, e)
                           }
                           variant="primary"
                         >

@@ -1,15 +1,34 @@
-import React from "react";
-import "./Style.scss"
+import React, { useEffect, useState } from "react";
+import "./Style.scss";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { api } from "../../Services/api";
 
 export const BarraCategoria = () => {
-  
-    return (
-      <div className="categorias d-none d-lg-flex">
-      <Link to="/produtos/esporte">Esporte</Link>
-      <Link to="/produtos/casual">Casual</Link>
-      <Link to="/produtos/sandalia">Sandália</Link>
-      <Link to="/produtos/bota">Bota</Link>
-      </div>
-    )
-  } 
+  const [categorias, setCategorias] = useState([]);
+  const [novaLista, setNovaLista] = useState([]);
+  const location = useLocation();
+
+  useEffect(() => {
+    const getProdutos = async () => {
+      const response = await api.get(`/categoria`);
+      setCategorias(response.data);
+    };
+    
+    //setCategorias(response.data);
+    getProdutos();
+  }, [location]);
+
+  return (
+    <div className="categorias d-none d-lg-flex">
+      {categorias.map((categoria, index) => (
+        <Link
+          key={index}
+          to={`/produtos/${categoria.nomeCategoria.toLowerCase()}`}
+        >
+          {categoria.nomeCategoria}
+        </Link>
+      ))}
+    </div>
+  );
+};

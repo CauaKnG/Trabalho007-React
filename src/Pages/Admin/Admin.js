@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import { Link, useNavigate } from "react-router-dom";
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+import Card from "react-bootstrap/Card";
+import "./style.scss";
 
 export const Admin = () => {
   const location = useLocation();
@@ -24,15 +24,92 @@ export const Admin = () => {
     <>
       {adminLogado === true && (
         <Container>
-          <DropdownButton
-            variant="outline-secondary"
-            title="Categoria"
-            id="input-group-dropdown-1"
-          >
-            <Dropdown.Item href="#"><Link to="/admin/categoria/atualizar">Atualizar</Link></Dropdown.Item>
-            <Dropdown.Item href="#"><Link to="/admin/categoria/criar">Criar</Link></Dropdown.Item>
-            <Dropdown.Item href="#"><Link to="/admin/categoria/deletar">Deletar</Link></Dropdown.Item>
-          </DropdownButton>
+          <div className="container-admin row">
+            <h1 className="titulo-admin">Usuario</h1>
+            <Link
+              className="card-admin col-lg-4 card-usuario"
+              to="/admin/usuario/atualizar"
+            >
+              <div class="imagem-card"></div>
+              <Card>
+                <Card.Body>
+                  <Card.Title>Atualizar</Card.Title>
+                </Card.Body>
+              </Card>
+            </Link>
+          </div>
+          <div className="container-admin row">
+            <h2 className="titulo-admin">Categoria</h2>
+            <Link
+              className="card-admin col-lg-4 card-categoria"
+              to="/admin/categoria/atualizar"
+            >
+              <div class="imagem-card"></div>
+              <Card>
+                <Card.Body>
+                  <Card.Title>Atualizar</Card.Title>
+                </Card.Body>
+              </Card>
+            </Link>
+            <Link
+              className="card-admin col-lg-4 card-categoria"
+              to="/admin/categoria/criar"
+            >
+              <div class="imagem-card"></div>
+              <Card>
+                <Card.Body>
+                  <Card.Title>Criar</Card.Title>
+                </Card.Body>
+              </Card>
+            </Link>
+            <Link
+              className="card-admin col-lg-4 card-categoria"
+              to="/admin/categoria/deletar"
+            >
+              <div class="imagem-card"></div>
+              <Card>
+                <Card.Body>
+                  <Card.Title>Deletar</Card.Title>
+                </Card.Body>
+              </Card>
+            </Link>
+          </div>
+          <div className="container-admin row">
+            <h3 className="titulo-admin">Produto</h3>
+            <Link
+              className="card-admin col-lg-4 card-produto"
+              to="/admin/produto/atualizar"
+            >
+              <div class="imagem-card"></div>
+              <Card>
+                <Card.Body>
+                  <Card.Title>Atualizar</Card.Title>
+                </Card.Body>
+              </Card>
+            </Link>
+            <Link
+              className="card-admin col-lg-4 card-produto"
+              to="/admin/produto/criar"
+            >
+              <div class="imagem-card"></div>
+              <Card>
+                <Card.Body>
+                  <Card.Title>Criar</Card.Title>
+                </Card.Body>
+              </Card>
+            </Link>
+            <Link
+              className="card-admin col-lg-4 card-produto"
+              to="/admin/produto/deletar"
+            >
+              <div class="imagem-card"></div>
+              <Card>
+                <Card.Body>
+                  <Card.Title>Deletar</Card.Title>
+                </Card.Body>
+              </Card>
+            </Link>
+          </div>
         </Container>
       )}
     </>

@@ -1,0 +1,53 @@
+.titulo-admin{
+    margin-top: 20px!important;
+}
+.card-admin {
+  text-decoration: none;
+  position: relative;
+  margin-top: 20px !important;
+  cursor: pointer;
+  .card {
+    background-color: #0d6efd;
+    color: white;
+    min-height: 120px;
+
+    .card-body {
+      display: flex;
+      align-items: center;
+    }
+  }
+  .imagem-card {
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.2;
+    right: 25px;
+    top: 11px;
+    position: absolute;
+    z-index: 1;
+    width: 100px;
+    height: 100px;
+  }
+}
+.card-usuario {
+  .imagem-card {
+    background-image: url("../../Assets/perfil.png");
+  }
+}
+.card-categoria {
+  .imagem-card {
+    background-image: url("../../Assets/categoria.png");
+  }
+}
+.card-produto {
+    .imagem-card {
+      background-image: url("../../Assets/produto.png");
+    }
+  }
+
+@media screen and(min-width: 992px) {
+  .card-admin {
+    .card {
+      width: 100% !important;
+    }
+  }
+}
