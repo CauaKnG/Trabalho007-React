@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { useCarrinho } from "../../Contexts/CarrinhoContext";
-import { CardCarrinho } from "./CardCarrinho";
 import Container from "react-bootstrap/Container";
-import "./Style.scss";
+import { FormatarNumero } from "../../Utils/FormatarNumero";
+import { BotaoFinalizar, BotaoLimpar, ContainerPai, Subtitulo, CardCarrinho } from "./Style";
 
 export const Carrinho = () => {
   const carrinho = useCarrinho();
@@ -26,7 +26,7 @@ export const Carrinho = () => {
   return (
     <>
       <Container>
-        <h1>Seu carrinho de compra:</h1>
+        <Subtitulo>Seu carrinho de compra:</Subtitulo>
         <div className="container-cards">
           {Object.keys(carrinho.carrinho).map((chave) => {
             const produto = carrinho.carrinho[chave];
@@ -38,7 +38,7 @@ export const Carrinho = () => {
                 />
 
                 <div className="campo detalhe-produto">
-                  <h1>PRODUTO</h1>
+                  <h1 className="negrito">PRODUTO</h1>
                   <div>
                     <label>{produto.nomeProduto}</label>
                     <p>{produto.descricaoProduto}</p>
@@ -49,7 +49,7 @@ export const Carrinho = () => {
                 </div>
 
                 <div className="campo quantidade-produto">
-                  <h1>QUANTIDADE</h1>
+                  <h1 className="negrito">QUANTIDADE:</h1>
                   <div className="quantidade-container">
                     {/* <button>-</button>
                     <span>{produto.quantidade}</span>
@@ -64,30 +64,30 @@ export const Carrinho = () => {
                 </div>
 
                 <div className="campo preco-unitario">
-                  <h1>PREÇO UNITÁRIO</h1>
-                  <span>R$ {produto.valorUnitario}</span>
+                  <h1 className="negrito">PREÇO UNITÁRIO:</h1>
+                  <span>{FormatarNumero(produto.valorUnitario)}</span>
                 </div>
 
                 <div className="campo preco-total">
-                  <h1>PREÇO TOTAL</h1>
-                  <span>R$ {produto.valorUnitario * produto.quantidade}</span>
+                  <h1 className="negrito">PREÇO TOTAL:</h1>
+                  <span>{FormatarNumero(produto.valorUnitario * produto.quantidade)}</span>
                 </div>
               </CardCarrinho>
             );
           })}
         </div>
-        <div className="checkout-container">
-          <div className="finalizar">
-            <button onClick={finalizar} className="btn-finalizar-compra">
-              Finalizar compra
-            </button>
-          </div>
-          <div className="limpar-carrinho">
-            <button onClick={limpar} className="btn-limpar-carrinho">
+        <ContainerPai>
+        <div className="limpar-carrinho">
+            <BotaoLimpar onClick={limpar} className="btn-limpar-carrinho">
               Limpar carrinho
-            </button>
+            </BotaoLimpar>
           </div>
-        </div>
+          <div className="finalizar">
+            <BotaoFinalizar onClick={finalizar} className="btn-finalizar-compra">
+              Finalizar compra
+            </BotaoFinalizar>
+          </div>
+        </ContainerPai>
       </Container>
     </>
   );

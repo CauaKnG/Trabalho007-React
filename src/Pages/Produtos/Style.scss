@@ -5,6 +5,18 @@
     display:flex;
     gap:20px;
     padding:20px 0;
+    .card{
+        margin-bottom: 20px;
+    transition: all 0.25s linear;
+    border-radius: 8px;
+    box-shadow: 0 0 0 rgb(10, 10, 10);
+    border: 1px solid #0d6efd;
+
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 0.7em rgb(10, 10, 10);
+    }
+    }
     @media(min-width: 992px){
         .card{
             width: 32.13%;

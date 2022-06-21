@@ -112,7 +112,7 @@ export const DetalheProduto = () => {
             </div>
           </div>
           {produtosRelacionados !== undefined && (
-            <><h1 className="titulo-secao">Produtos similares<span className="linha" ></span></h1>
+            <><h1 className="titulo-secao">Produtos similares</h1>
             <Carousel responsive={responsive}>
               {produtosRelacionados.map((produto, index) => (
                 <div className="card-produto">
@@ -124,7 +124,7 @@ export const DetalheProduto = () => {
                   />
                   <Card.Body>
                     <Card.Title>{produto.nomeProduto}</Card.Title>
-                    <Card.Text>{produto.descricaoProduto}</Card.Text>
+                    <Card.Text className="descricao">{produto.descricaoProduto}</Card.Text>
                     <Card.Text>{FormatarNumero(produto.valorUnitario)}</Card.Text>
                     <Link className="botao-detalhe" to={`/detalhe-produto/${produto.idProduto}`}>
                       Detalhes
