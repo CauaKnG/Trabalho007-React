@@ -115,8 +115,8 @@ export const DetalheProduto = () => {
             <><h1 className="titulo-secao">Produtos similares</h1>
             <Carousel responsive={responsive}>
               {produtosRelacionados.map((produto, index) => (
-                <div className="card-produto">
-                <Card className="card-produto-detalhe" key={index}>
+                <div className="card-produto" key={index}>
+                <Card className="card-produto-detalhe">
                   <Card.Img className="img-detalhe"
                     variant="top"
                     src={produto.imagemProduto.toString()}

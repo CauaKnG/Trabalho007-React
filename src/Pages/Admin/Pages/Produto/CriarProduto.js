@@ -3,12 +3,14 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { api } from "../../../../Services/api";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Formulario } from "../../../Entrar/Style";
+import Container from "react-bootstrap/Container";
 
 export const CriarProduto = () => {
+  var redirect = useNavigate();
   const validacaoProduto = yup
     .object({
       nomeProduto: yup.string().required("O campo nome é obrigatorio!"),
@@ -41,7 +43,6 @@ export const CriarProduto = () => {
     const getProdutos = async () => {
       const response = await api.get(`/produto`);
       setProdutos(response.data);
-      console.log(response.data);
     };
     getProdutos();
   }, [location]);
@@ -72,6 +73,7 @@ export const CriarProduto = () => {
         .then(
           (response) => {
             alert("Produto criado com sucesso !!");
+            redirect("/admin/produto/criar");
           },
           (error) => {
             alert("Produto já existente");
@@ -82,7 +84,7 @@ export const CriarProduto = () => {
   };
 
   return (
-    <>
+    <Container>
       <Formulario>
         <Form onSubmit={handleSubmit(onSubmitCriacao)}>
           <Form.Group className="mb-3" controlId="nomeProduto">
@@ -149,6 +151,6 @@ export const CriarProduto = () => {
           </Button>
         </Form>
       </Formulario>
-    </>
+    </Container>
   );
 };

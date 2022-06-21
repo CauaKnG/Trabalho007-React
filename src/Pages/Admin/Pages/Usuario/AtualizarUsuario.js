@@ -8,6 +8,7 @@ import Form from "react-bootstrap/Form";
 import { Formulario } from "../../../Entrar/Style";
 import Table from "react-bootstrap/Table";
 import { Modal, Button } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
 
 export const AtualizarUsuario = () => {
   const validacaoAtualizacao = yup
@@ -18,6 +19,7 @@ export const AtualizarUsuario = () => {
         .required("O campo telefone  é obrigatorio!"),
       senha: yup.string().required("O campo senha  é obrigatorio!"),
       admin: yup.string().required("O campo admin  é obrigatorio!"),
+      novaSenha: yup.string(),
     })
     .required();
 
@@ -48,35 +50,34 @@ export const AtualizarUsuario = () => {
     const getUsuarios = async () => {
       const response = await api.get(`/cliente`);
       setUsuarios(response.data);
-      console.log(response.data);
     };
     getUsuarios();
   }, [location]);
 
   const onSubmitAtualizacao = (data, evn) => {
     evn.preventDefault();
-   /* const atualizarUsuario = async () => {
+    const atualizarUsuario = async () => {
       const response = await api
         .put(
-          `/usuario/dto`,
+          `/cliente/dto`,
           {
-              idCliente:
-                emailCliente: "vinicim22s4@gmail.com.br",
-                nomeCliente: "Poze",
-                cpfCliente: "226.046.070-42",
-                telefoneCliente: "21845444414",
-                dataNascimento:"02/12/2000",
-                admin:false,
-                senha:"",
-                enderecoDTO: {
-                    numero: "566556",
-                    complemento:"Rua Teresa",
-                    cep: "25675160",
-                    bairro: "Bataillard",
-                    cidade:"Petrópolis",
-                    uf:"RJ",
-                    rua:"Mosela"
-                }
+            idCliente: usuarioSelecionado.idCliente,
+            emailCliente: data.emailCliente,
+            nomeCliente: usuarioSelecionado.nomeCliente,
+            cpfCliente: usuarioSelecionado.cpfCliente,
+            telefoneCliente: data.telefoneCliente,
+            dataNascimento: usuarioSelecionado.dataNascimento,
+            admin: data.admin,
+            senha: data.senha,
+            enderecoDTO: {
+              numero: usuarioSelecionado.endereco.numero,
+              complemento: usuarioSelecionado.endereco.complemento,
+              cep: usuarioSelecionado.endereco.cep,
+              bairro: usuarioSelecionado.endereco.bairro,
+              cidade: usuarioSelecionado.endereco.localidade,
+              uf: usuarioSelecionado.endereco.uf,
+              rua: usuarioSelecionado.endereco.logradouro,
+            },
           },
           {
             headers: {
@@ -86,20 +87,20 @@ export const AtualizarUsuario = () => {
         )
         .then(
           (response) => {
-            alert("Produto atualizado com sucesso!!");
+            alert("Cliente atualizado com sucesso!!");
             setShow(false);
-            redirect("/admin/produto/atualizar");
+            redirect("/admin/usuario/atualizar");
           },
           (error) => {
-            alert("Nome ou descrição já existente");
+            alert("Erro ao atualizar usuário, tente novamente mais tarde");
           }
         );
     };
-    atualizarProduto();*/
+    atualizarUsuario();
   };
 
   return (
-    <>
+    <Container>
       <Formulario>
         <Table striped bordered hover>
           <thead>
@@ -138,7 +139,6 @@ export const AtualizarUsuario = () => {
                             <Form.Control
                               {...register("emailCliente")}
                               type="text"
-                              readOnly
                               defaultValue={
                                 usuarioSelecionado &&
                                 usuarioSelecionado.emailCliente
@@ -147,7 +147,10 @@ export const AtualizarUsuario = () => {
                             />
                             <p>{errors.emailCliente?.message}</p>
                           </Form.Group>
-                          <Form.Group className="mb-3" controlId="telefoneCliente">
+                          <Form.Group
+                            className="mb-3"
+                            controlId="telefoneCliente"
+                          >
                             <Form.Label>Telefone</Form.Label>
                             <Form.Control
                               defaultValue={
@@ -167,18 +170,32 @@ export const AtualizarUsuario = () => {
                             <Form.Label>Senha</Form.Label>
                             <Form.Control
                               defaultValue={
-                                usuarioSelecionado &&
-                                usuarioSelecionado.senha
+                                usuarioSelecionado && usuarioSelecionado.senha
                               }
                               {...register("senha")}
-                              type="text"
-                              placeholder="senha"
+                              type="password"
+                              placeholder="****"
                             />
                             <p>{errors.senha?.message}</p>
+                          </Form.Group>
+                          <Form.Group className="mb-3" controlId="novaSenha">
+                            <Form.Label>Nova senha</Form.Label>
+                            <Form.Control
+                              {...register("novaSenha")}
+                              type="password"
+                              placeholder="****"
+                            />
+                            <p>{errors.novaSenha?.message}</p>
                           </Form.Group>
                           <Form.Group className="mb-3" controlId="admin">
                             <Form.Label>Admin</Form.Label>
                             <Form.Control
+                              defaultValue={
+                                usuarioSelecionado &&
+                                usuarioSelecionado.admin === true
+                                  ? "true"
+                                  : "false"
+                              }
                               {...register("admin")}
                               type="text"
                               placeholder="admin"
@@ -186,7 +203,6 @@ export const AtualizarUsuario = () => {
                             <p>{errors.admin?.message}</p>
                           </Form.Group>
 
-                         
                           <Button variant="primary" type="submit">
                             Atualizar
                           </Button>
@@ -200,6 +216,6 @@ export const AtualizarUsuario = () => {
           </tbody>
         </Table>
       </Formulario>
-    </>
+    </Container>
   );
 };
