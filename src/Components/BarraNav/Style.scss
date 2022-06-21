@@ -1,14 +1,45 @@
-form{
-    button{
+form {
+    button {
         margin-left: 5px;
     }
 }
-.container{
-    .navbar-collapse{
+
+.container {
+    .navbar-collapse {
         flex-grow: inherit;
     }
 
-    .lupa{
+    .lupa {
         margin-right: 10px;
+    }
+
+    .navbar-brand {
+        svg {
+            width: 200px;
+        }
+    }
+
+    .icone-carrinho {
+        position: relative;
+
+        span {
+            background-color: white;
+            color: #1A0ECD;
+            position: absolute;
+            top: 3px;
+            right: -4px;
+            line-height: 1rem;
+            height: 1rem;
+            width: 1rem;
+            border-radius: 1rem;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+            border-bottom-left-radius: 1rem;
+            font-size: .75rem;
+            font-weight: 700;
+            z-index: 1;
+            text-align: center;
+        }
     }
 }

@@ -47,15 +47,10 @@
   color: #0d6efd;
 }
 
-.linha{
-    height: 2px;
-    width: 100%;
-    background-color: #0d6efd;
-}
-
 .titulo-secao{
-    display: flex;
-    align-items: center;
+    border-bottom: 2px solid black;
+
+    
 }
 .card-produto {
   .card-produto-detalhe {
@@ -89,6 +84,9 @@
     background-color: white;
     color: black;
   }
+}
+.descricao{
+  height: 48px;
 }
 
 

@@ -1,5 +1,34 @@
 import styled from "styled-components";
 
+export const BotaoFinalizar = styled.button`
+      background-color: #0d6efd;
+      border: none;
+      outline: none;
+      border-radius: 4px;
+      color: #fff;
+      padding: 5px;
+      min-width: 20px;
+`
+
+export const BotaoLimpar = styled.button`
+      background-color: whitesmoke;
+      border: none;
+      outline: none;
+      border-radius: 4px;
+      color: #0d6efd;
+      padding: 5px;
+      min-width: 20px;
+`
+export const ContainerPai = styled.div`
+    display: flex;
+    justify-content: space-between;
+`
+
+export const Subtitulo = styled.h1`
+    margin: 20px 0;
+    font-size: 30px;
+`
+
 export const CardCarrinho = styled.div`
   border: 1px solid black;
   border-radius: 8px;
