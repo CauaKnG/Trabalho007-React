@@ -8,6 +8,7 @@ import Form from "react-bootstrap/Form";
 import { Formulario } from "../../../Entrar/Style";
 import Table from "react-bootstrap/Table";
 import { Modal, Button } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
 
 export const AtualizarCategoria = () => {
   const validacaoAtualizacao = yup
@@ -47,7 +48,6 @@ export const AtualizarCategoria = () => {
     const getCategorias = async () => {
       const response = await api.get(`/categoria`);
       setCategorias(response.data);
-      console.log(response.data);
     };
     getCategorias();
   }, [location]);
@@ -84,7 +84,7 @@ export const AtualizarCategoria = () => {
   };
 
   return (
-    <>
+    <Container>
       <Formulario>
         <Table striped bordered hover>
           <thead>
@@ -175,6 +175,6 @@ export const AtualizarCategoria = () => {
           </tbody>
         </Table>
       </Formulario>
-    </>
+    </Container>
   );
 };

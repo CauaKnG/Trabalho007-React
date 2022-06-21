@@ -7,16 +7,17 @@ import { useLocation } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Formulario } from "../../../Entrar/Style";
+import Container from "react-bootstrap/Container";
 
 export const CriarCategoria = () => {
-
-    const validacaoCriacao = yup
-  .object({
-    nomeCategoria: yup.string().required("O campo nome é obrigatorio!"),
-    descricaoCategoria: yup.string().required("O campo descrição é obrigatorio!"),
-
-  })
-  .required();
+  const validacaoCriacao = yup
+    .object({
+      nomeCategoria: yup.string().required("O campo nome é obrigatorio!"),
+      descricaoCategoria: yup
+        .string()
+        .required("O campo descrição é obrigatorio!"),
+    })
+    .required();
 
   const {
     register,
@@ -33,7 +34,6 @@ export const CriarCategoria = () => {
     const getCategorias = async () => {
       const response = await api.get(`/categoria`);
       setCategorias(response.data);
-      console.log(response.data);
     };
     getCategorias();
   }, [location]);
@@ -48,59 +48,63 @@ export const CriarCategoria = () => {
       }
     );
     setCategorias(response.data);
-    console.log(response.data);
   };
 
   const onSubmitCriacao = (data, evn) => {
     evn.preventDefault();
-      const novaCategoria = async () => {
-        const response = await api.post(`/categoria/dto`, {
-          nomeCategoria:data.nomeCategoria,
-          descricaoCategoria:data.descricaoCategoria
-        },
+    const novaCategoria = async () => {
+      const response = await api
+        .post(
+          `/categoria/dto`,
           {
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          )
-          .then(
-            (response) => {
-              alert("Categoria criada com sucesso!!");
+            nomeCategoria: data.nomeCategoria,
+            descricaoCategoria: data.descricaoCategoria,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
             },
-            (error) => {
-              alert("Categoria já existente")
-            }
-          );
-      };
-      novaCategoria();
+          }
+        )
+        .then(
+          (response) => {
+            alert("Categoria criada com sucesso!!");
+          },
+          (error) => {
+            alert("Categoria já existente");
+          }
+        );
     };
+    novaCategoria();
+  };
 
-  return (<>
-  <Formulario>
-      <Form onSubmit={handleSubmit(onSubmitCriacao)}>
-        <Form.Group className="mb-3" controlId="nomeCategoria">
-          <Form.Label>Nome Categoria</Form.Label>
-          <Form.Control
-            {...register("nomeCategoria")}
-            type="text"
-            placeholder="Nome Categoria"
-          />
-          <p>{errors.nomeCategoria?.message}</p>
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="descricaoCategoria">
-          <Form.Label>Descrição Categoria</Form.Label>
-          <Form.Control
-            {...register("descricaoCategoria")}
-            type="text"
-            placeholder="Descrição Categoria"
-          />
-          <p>{errors.descricaoCategoria?.message}</p>
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Criar
-        </Button>
-      </Form>
-    </Formulario>
-  </>);
+  return (
+    <Container>
+      <Formulario>
+        <Form onSubmit={handleSubmit(onSubmitCriacao)}>
+          <Form.Group className="mb-3" controlId="nomeCategoria">
+            <Form.Label>Nome Categoria</Form.Label>
+            <Form.Control
+              {...register("nomeCategoria")}
+              type="text"
+              placeholder="Nome Categoria"
+            />
+            <p>{errors.nomeCategoria?.message}</p>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="descricaoCategoria">
+            <Form.Label>Descrição Categoria</Form.Label>
+            <Form.Control
+              {...register("descricaoCategoria")}
+              type="text"
+              placeholder="Descrição Categoria"
+            />
+            <p>{errors.descricaoCategoria?.message}</p>
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Criar
+          </Button>
+        </Form>
+      </Formulario>
+    </Container>
+  );
 };

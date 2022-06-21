@@ -24,37 +24,46 @@ export const Root = () => {
       <CarrinhoProvider>
         <BrowserRouter>
           <NavBar />
-          <Routes>
-            <Route path="/" element={<Inicio />} />
-            <Route path="/entrar" element={<Entrar />} />
-            <Route path="/cadastrar" element={<Cadastro />} />
-            <Route path="/carrinho" element={<Carrinho />} />
-            <Route path="/produtos/:categoria" element={<Produtos />} />
-            <Route
-              path="/detalhe-produto/:idProduto"
-              element={<DetalheProduto />}
-            />
-            <Route path="/admin" element={<Admin />} />
+          <div className="conteudo-site">
+            <Routes>
+              <Route path="/" element={<Inicio />} />
+              <Route path="/entrar" element={<Entrar />} />
+              <Route path="/cadastrar" element={<Cadastro />} />
+              <Route path="/carrinho" element={<Carrinho />} />
+              <Route path="/produtos/:categoria" element={<Produtos />} />
+              <Route
+                path="/detalhe-produto/:idProduto"
+                element={<DetalheProduto />}
+              />
+              <Route path="/admin" element={<Admin />} />
 
-            <Route
-              path="/admin/categoria/atualizar"
-              element={<AtualizarCategoria />}
-            />
-            <Route path="/admin/categoria/criar" element={<CriarCategoria />} />
-            <Route
-              path="/admin/categoria/deletar"
-              element={<DeleteCategoria />}
-            />
-            <Route
-              path="/admin/produto/atualizar"
-              element={<AtualizarProduto />}
-            />
-            <Route path="/admin/produto/criar" element={<CriarProduto />} />
-            <Route path="/admin/produto/deletar" element={<DeleteProduto />} />
-            <Route path="/admin/usuario/atualizar" element={<AtualizarUsuario />} />
-          </Routes>
-
-
+              <Route
+                path="/admin/categoria/atualizar"
+                element={<AtualizarCategoria />}
+              />
+              <Route
+                path="/admin/categoria/criar"
+                element={<CriarCategoria />}
+              />
+              <Route
+                path="/admin/categoria/deletar"
+                element={<DeleteCategoria />}
+              />
+              <Route
+                path="/admin/produto/atualizar"
+                element={<AtualizarProduto />}
+              />
+              <Route path="/admin/produto/criar" element={<CriarProduto />} />
+              <Route
+                path="/admin/produto/deletar"
+                element={<DeleteProduto />}
+              />
+              <Route
+                path="/admin/usuario/atualizar"
+                element={<AtualizarUsuario />}
+              />
+            </Routes>
+          </div>
           <Rodape />
         </BrowserRouter>
       </CarrinhoProvider>

@@ -21,8 +21,6 @@ const validacao = yup
 
 export const Entrar = () => {
   const location = useLocation();
-
-
   const [clientes, setClientes] = useState({});
 
   useEffect(() => {
@@ -62,8 +60,7 @@ export const Entrar = () => {
       }
     });
     if(pessoaLogada === undefined){
-      alert("Usuário não encontardo.")
-      redirect("/cadastrar")
+      alert("Email ou senha inválidos.")
     }else{
       alert("Bem-vindo, "+ pessoaLogada.nomeCliente)
 

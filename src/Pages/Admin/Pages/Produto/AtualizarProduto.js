@@ -8,6 +8,7 @@ import Form from "react-bootstrap/Form";
 import { Formulario } from "../../../Entrar/Style";
 import Table from "react-bootstrap/Table";
 import { Modal, Button } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
 
 export const AtualizarProduto = () => {
   const validacaoAtualizacao = yup
@@ -55,7 +56,6 @@ export const AtualizarProduto = () => {
     const getProdutos = async () => {
       const response = await api.get(`/produto`);
       setProdutos(response.data);
-      console.log(response.data);
     };
     getProdutos();
   }, [location]);
@@ -99,7 +99,7 @@ export const AtualizarProduto = () => {
   };
 
   return (
-    <>
+    <Container>
       <Formulario>
         <Table striped bordered hover>
           <thead>
@@ -235,6 +235,6 @@ export const AtualizarProduto = () => {
           </tbody>
         </Table>
       </Formulario>
-    </>
+    </Container>
   );
 };
