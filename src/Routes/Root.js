@@ -9,6 +9,10 @@ import { Rodape } from "../Components/Rodape/Rodape";
 import { Produtos } from "../Pages/Produtos/Produtos";
 import { DetalheProduto } from "../Pages/DetalheProduto/DetalheProduto";
 import { CarrinhoProvider } from "../Contexts/CarrinhoContext";
+import { Admin } from "../Pages/Admin/Admin";
+import { AtualizarCategoria } from "../Pages/Admin/Pages/Categoria/AtualizarCategoria";
+import { CriarCategoria } from "../Pages/Admin/Pages/Categoria/CriarCategoria";
+import { DeleteCategoria } from "../Pages/Admin/Pages/Categoria/DeletarCategoria";
 
 export const Root = () => {
   return (
@@ -26,6 +30,11 @@ export const Root = () => {
               path="/detalhe-produto/:idProduto"
               element={<DetalheProduto />}
             />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/admin/produto" element={<Admin />} />
+            <Route path="/admin/categoria/atualizar" element={<AtualizarCategoria />} />
+            <Route path="/admin/categoria/criar" element={<CriarCategoria />} />
+            <Route path="/admin/categoria/deletar" element={<DeleteCategoria />} />
           </Routes>
           <Rodape />
         </BrowserRouter>

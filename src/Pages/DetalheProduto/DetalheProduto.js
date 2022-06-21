@@ -8,6 +8,8 @@ import "react-multi-carousel/lib/styles.css";
 import Card from "react-bootstrap/Card";
 import { useLocation, Link } from "react-router-dom";
 import { useCarrinho } from "../../Contexts/CarrinhoContext";
+import "./Style.scss";
+import { FormatarNumero } from "../../Utils/FormatarNumero";
 
 export const DetalheProduto = () => {
   const location = useLocation();
@@ -21,6 +23,7 @@ export const DetalheProduto = () => {
   const carrinho = useCarrinho();
   const add = (produto) => ()=> {
     carrinho.addCarrinho(produto);
+    alert("Produto adicionado ao carrinho.")
   };
 
   useEffect(() => {
@@ -68,18 +71,18 @@ export const DetalheProduto = () => {
         <>
           <div className="row">
             <div className="col-lg-7 ">
-              <img
+              <img className="imagem-detalhe"
                 src={produto.imagemProduto.toString()}
                 alt={produto.descricaoProduto}
               />
             </div>
             <div className="col-lg-5">
-              <div>
+              <div className="descricao-detalhe">
                 <h1>{produto.descricaoProduto}</h1>
                 <span>
                   Vendido e entregue por <label>Grupo 7</label>
                 </span>
-                <Form.Select>
+                <Form.Select className="w-50 mt-3 mb-3">
                   <option value=" ">Selecione o tamanho</option>
                   <option value="34">34</option>
                   <option value="35">35</option>
@@ -92,41 +95,47 @@ export const DetalheProduto = () => {
                 </Form.Select>
                 <p>Quantidade: {produto.qtdEstoque}</p>
 
-                <h3>
-                  <span>De:</span> R$ {produto.valorUnitario + 100}
+                <h3 className="preco-de">
+                  <span>De: </span>{FormatarNumero(produto.valorUnitario + 100)}
                 </h3>
-                <h3>
-                  <span>Por:</span> R$ {produto.valorUnitario}
+                <h3 className="preco-por">
+                  <span>Por: </span>{FormatarNumero(produto.valorUnitario)}
                 </h3>
-                <label>
-                  <span>3x</span>
-                  <span>R$ {produto.valorUnitario / 3}</span> sem juros no
+                <label className="parcelamento">
+                  <span className="negrito">3x </span>
+                  <span>de </span>
+                  <span className="blue negrito">{FormatarNumero(produto.valorUnitario / 3)}</span> sem juros no
                   cartão
                 </label>
-                <button onClick={add(produto)} className="d-block">Comprar</button>
+                <button className="botao-card-detalhe d-block" onClick={add(produto)}>Comprar</button>
               </div>
             </div>
           </div>
           {produtosRelacionados !== undefined && (
+            <><h1 className="titulo-secao">Produtos similares</h1>
             <Carousel responsive={responsive}>
               {produtosRelacionados.map((produto, index) => (
-                <Card key={index}>
-                  <Card.Img
+                <div className="card-produto">
+                <Card className="card-produto-detalhe" key={index}>
+                  <Card.Img className="img-detalhe"
                     variant="top"
                     src={produto.imagemProduto.toString()}
                     alt={produto.descricaoProduto}
                   />
                   <Card.Body>
                     <Card.Title>{produto.nomeProduto}</Card.Title>
-                    <Card.Text>{produto.descricaoProduto}</Card.Text>
-                    <Card.Text>R$ {produto.valorUnitario}</Card.Text>
-                    <Link to={`/detalhe-produto/${produto.idProduto}`}>
-                      Comprar
+                    <Card.Text className="descricao">{produto.descricaoProduto}</Card.Text>
+                    <Card.Text>{FormatarNumero(produto.valorUnitario)}</Card.Text>
+                    <Link className="botao-detalhe" to={`/detalhe-produto/${produto.idProduto}`}>
+                      Detalhes
                     </Link>
                   </Card.Body>
                 </Card>
+                </div>
               ))}
+              
             </Carousel>
+            </>
           )}
         </>
       )}

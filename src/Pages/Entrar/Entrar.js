@@ -35,8 +35,6 @@ export const Entrar = () => {
     getClientes();
   }, [location]);
 
-  
-
   var redirect = useNavigate();
 
   const {
